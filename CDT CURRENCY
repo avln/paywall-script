@@ -1,0 +1,13 @@
+ }     
+        else if(my_currency[key].id ==1978)   
+        {
+                txjson.Amount.currency = my_currency[key].currency;
+                txjson.Amount.issuer   = my_currency[key].issuer;      
+
+                amount = parseInt((my_usd_price / xrp_price("XRP"))); 
+
+                var price = JSON.parse(UrlFetchApp.fetch("https://data.ripple.com/v2/exchanges/XRP/CDT+r4wkT41DhuuJDxhpTdKoiVrZbsn2DvjSPL?descending=true&result=tesSUCCESS&limit=1&interval=2hour"));
+
+                if(price.result == 'success')
+                {
+                  txjson.Amount.value = ( amount * price.exchanges[0].open ).toString();
